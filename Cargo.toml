@@ -24,3 +24,113 @@ unstable = []
 
 [package.metadata.docs.rs]
 all-features = true
+
+[lints.rust]
+warnings = { level = "warn", priority = -2 }
+deprecated-safe = { level = "deny", priority = -1 }
+future-incompatible = { level = "deny", priority = -1 }
+keyword-idents = { level = "deny", priority = -1 }
+let-underscore = { level = "deny", priority = -1 }
+nonstandard-style = { level = "deny", priority = -1 }
+refining-impl-trait = { level = "deny", priority = -1 }
+rust-2018-compatibility = { level = "deny", priority = -1 }
+rust-2018-idioms = { level = "deny", priority = -1 }
+rust-2021-compatibility = { level = "deny", priority = -1 }
+rust-2024-compatibility = { level = "deny", priority = -1 }
+# TODO still prototyping
+unused = { level = "allow", priority = 1 }
+
+[lints.clippy]
+cargo = { level = "warn", priority = -2 }
+complexity = { level = "warn", priority = -2 }
+correctness = { level = "deny", priority = -1 }
+nursery = { level = "warn", priority = -2 }
+pedantic = { level = "warn", priority = -2 }
+perf = { level = "warn", priority = -2 }
+restriction = { level = "warn", priority = -2 }
+style = { level = "warn", priority = -2 }
+suspicious = { level = "warn", priority = -2 }
+
+# wgsl-analyzer has no stability commitment
+exhaustive_structs = "allow"
+# wgsl-analyzer has no stability commitment
+exhaustive_enums = "allow"
+# good for organization
+single_call_fn = "allow"
+# unidiomatic
+implicit_return = "allow"
+# unidiomatic
+question_mark_used = "allow"
+# often useful
+shadow_reuse = "allow"
+# often useful
+pub_use = "allow"
+# no no_std support
+std_instead_of_alloc = "allow"
+# no no_std support
+std_instead_of_core = "allow"
+# not important
+cargo_common_metadata = "allow"
+# not under this crate's control
+multiple_crate_versions = "allow"
+# makes it easier to keep up to date with new lints
+blanket_clippy_restriction_lints = "allow"
+# style preference
+pub_with_shorthand = "allow"
+# often hurts readability
+absolute_paths = "allow"
+# incorrect
+items_after_statements = "allow"
+# do not care
+shadow_unrelated = "allow"
+# antipattern
+missing_trait_methods = "allow"
+# is fine
+float_arithmetic = "allow"
+# style preference
+separated_literal_suffix = "allow"
+# style preference
+self_named_module_files = "allow"
+# style preference
+semicolon_outside_block = "allow"
+# conflicting with redundant_else
+else_if_without_else = "allow"
+# does not allow test module to be at bottom of file
+arbitrary_source_item_ordering = "allow"
+# unwanted restriction
+field_scoped_visibility_modifiers = "allow"
+# unwanted restriction
+redundant_pub_crate = "allow"
+# needs to be determined on a case-by-case basis
+default_numeric_fallback = "allow"
+# nursery, ugly suggestions
+option_if_let_else = "allow"
+# not a good general rule for the cost it entails
+arithmetic_side_effects = "allow"
+# always covered by min_ident_chars
+many_single_char_names = "allow"
+# imports can be aliased
+error_impl_error = "allow"
+
+# TODOs
+missing_docs_in_private_items = "allow"
+module_name_repetitions = "allow"
+struct_excessive_bools = "allow"
+unwrap_used = "allow"
+unwrap_in_result = "allow"
+pattern_type_mismatch = "allow"
+panic_in_result_fn = "allow"
+panic = "allow"
+missing_errors_doc = "allow"
+missing_assert_message = "allow"
+cast_precision_loss = "allow"
+multiple_inherent_impl = "allow"
+iter_over_hash_type = "allow"
+expect_used = "allow"
+string_slice = "allow"
+
+# is this helpful enough?
+missing_inline_in_public_items = "allow"
+
+# prefer get().expect() so that the reason is documented
+indexing_slicing = "allow"

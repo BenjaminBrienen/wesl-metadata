@@ -11,13 +11,13 @@ use serde::{Deserialize, Serialize};
 #[cfg_attr(feature = "builder", builder(pattern = "owned", setter(into)))]
 /// A dependency of the main crate
 pub struct Dependency {
-    /// Name as given in the `wesl.toml`
-    pub name: String,
+	/// Name as given in the `wesl.toml`
+	pub name: String,
 
-    /// If the dependency is renamed, this is the new name for the dependency
-    /// as a string.  None if it is not renamed.
-    pub rename: Option<String>,
+	/// If the dependency is renamed, this is the new name for the dependency
+	/// as a string.  None if it is not renamed.
+	pub rename: Option<String>,
 
-    /// The file system path for a local path dependency.
-    pub path: Option<Utf8PathBuf>,
+	/// The file system path for a local path dependency.
+	pub path: Option<Utf8PathBuf>,
 }

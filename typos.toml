@@ -1,0 +1,102 @@
+[files]
+extend-exclude = [
+  "*.patch",     # Automatically generated files that should not be manually modified.
+  "*.bin",       # Binary files
+  ".git/",       # Version control files
+  "clippy.toml", # Intentional typos
+]
+ignore-hidden = false
+
+# Corrections take the form of a key/value pair. The key is the incorrect word
+# and the value is the correct word. If the key and value are the same, the
+# word is treated as always correct. If the value is an empty string, the word
+# is treated as always incorrect.
+
+# Match Whole Word - Case Sensitive
+[default.extend-identifiers]
+"err" = "error"
+"idx" = "index"
+
+# Match Inside a Word - Case Insensitive
+[default.extend-words]
+"jod" = "jod"
+"anser" = "anser"
+# lsp_types
+"typ" = "typ"
+# "perf" = "performance"
+
+# Contractions
+"don't" = "do not"
+"can't" = "cannot"
+"isn't" = "is not"
+"wouldn't" = "would not"
+"aren't" = "are not"
+"couldn't" = "could not"
+"shouldn't" = "should not"
+"won't" = "will not"
+"haven't" = "have not"
+"hasn't" = "has not"
+"hadn't" = "had not"
+"doesn't" = "does not"
+"didn't" = "did not"
+"mustn't" = "must not"
+"mightn't" = "might not"
+"shan't" = "shall not"
+"weren't" = "were not"
+"wasn't" = "was not"
+"needn't" = "need not"
+"let's" = "let us"
+"there's" = "there is"
+"who's" = "who is"
+"what's" = "what is"
+"where's" = "where is"
+"when's" = "when is"
+"why's" = "why is"
+"how's" = "how is"
+# "params" = "parameters"
+# "req" = "request"
+"res" = "result"
+# "args" = "arguments"
+"sig" = "signature"
+# handled by clippy due to std using the abbreviation
+# "dir" = "directory"
+# "dirs" = "directories" # Used by dependencies
+"resp" = "response"
+"msg" = "message"
+"nav" = "navigation"
+# "dbg" = "debug"
+# "ctrl" = "control"
+"btn" = "button"
+"elem" = "element"
+# "attr" = "attribute"
+# "src" = "source"
+"dest" = "destination"
+"tmp" = "temporary"
+"auth" = "authentication"
+"stmt" = "statement"
+# "alloc" = "allocate"
+# "expr" = "expression"
+"prev" = "previous"
+"sel" = "selection"
+# "col" = "column"
+# "lit" = "literal"
+# "ident" = "identifier"
+# "ty" = "type"
+
+# Be concise
+":-)" = "be concise"
+";-)" = "be concise"
+"is going on" = "happens"
+"take a look at" = "examine"
+
+# "argument" = "input"
+# "response" = "answer"
+
+[default]
+locale = "en-us"
+extend-ignore-re = [
+  "(?Rm)^.*(#|//)\\s*spellchecker:disable-line$",
+  "(?Rm)^.*<!--\\s*spellchecker:disable-line\\s*-->$",
+  "(?Rm) .+ ...\"$",
+]
+extend-ignore-identifiers-re = []
