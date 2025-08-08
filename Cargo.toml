@@ -51,9 +51,9 @@ restriction = { level = "warn", priority = -2 }
 style = { level = "warn", priority = -2 }
 suspicious = { level = "warn", priority = -2 }
 
-# wgsl-analyzer has no stability commitment
+# no stability commitment
 exhaustive_structs = "allow"
-# wgsl-analyzer has no stability commitment
+# no stability commitment
 exhaustive_enums = "allow"
 # good for organization
 single_call_fn = "allow"
