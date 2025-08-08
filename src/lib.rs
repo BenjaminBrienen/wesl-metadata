@@ -83,6 +83,7 @@ pub struct PackageId {
 }
 
 impl fmt::Display for PackageId {
+	#[expect(clippy::renamed_function_params, reason = "trait impl")]
 	fn fmt(
 		&self,
 		formatter: &mut fmt::Formatter<'_>,
@@ -441,6 +442,7 @@ impl Edition {
 }
 
 impl fmt::Display for Edition {
+	#[expect(clippy::renamed_function_params, reason = "trait impl")]
 	fn fmt(
 		&self,
 		formatter: &mut fmt::Formatter<'_>,
