@@ -41,9 +41,7 @@ check-inconsistent-struct-field-initializers = true
 check-private-items = false
 cognitive-complexity-threshold = 25
 disallowed-macros = []
-disallowed-methods = [
-  { path = "std::process::Command::new", reason = "use `toolchain::command` instead as it forces the choice of a working directory" },
-]
+disallowed-methods = []
 # Things that do not work due to macros can be handled by typos.toml instead.
 disallowed-names = [
   "acc",    # accumulator
@@ -82,19 +80,19 @@ disallowed-names = [
   "opts",   # options
   "vars",   # variables
   "ty",     # r#type
-  "lex",    # lexer     # does not work due to logos::logos macro
-  "tmp",    # temporary # does not work due to db! macro
-  "err",    # error     # does not work due to ?
-  "db",     # database  # does not work due to xflag macro
-  "args",   # arguments # does not work due to write! macro
-  "res",    # result    # does not work due to format! macro
+  "lex",    # lexer
+  "tmp",    # temporary
+  "err",    # error
+  "db",     # database
+  "args",   # arguments
+  "res",    # result
 ]
 disallowed-types = [
   { path = "std::collections::HashMap", reason = "use FxHashMap" },
   { path = "std::collections::HashSet", reason = "use FxHashSet" },
   { path = "std::collections::hash_map::RandomState", reason = "use BuildHasherDefault<FxHasher>" },
 ]
-doc-valid-idents = ["..", "QoS"]
+doc-valid-idents = [".."]
 enable-raw-pointer-heuristic-for-send = true
 enforce-iter-loop-reborrow = false
 enforced-import-renames = []
@@ -127,25 +125,13 @@ source-item-ordering = ["enum", "impl", "module", "struct", "trait"]
 stack-size-threshold = 512000
 standard-macro-braces = [
   { name = "always", brace = "(" },
-  { name = "anyhow::anyhow", brace = "(" },
-  { name = "anyhow::bail", brace = "(" },
-  { name = "anyhow::format_err", brace = "(" },
   { name = "assert_eq", brace = "(" },
   { name = "assert", brace = "(" },
-  { name = "ast_enum_compound", brace = "{" },
-  { name = "ast_enum_raw", brace = "{" },
-  { name = "ast_enum", brace = "{" },
-  { name = "ast_node", brace = "{" },
-  { name = "ast_token_enum", brace = "{" },
   { name = "cfg_if", brace = "{" },
   { name = "cfg", brace = "(" },
   { name = "concat", brace = "(" },
-  { name = "count_tts", brace = "(" },
   { name = "dbg", brace = "(" },
-  { name = "define_semantic_token_modifiers", brace = "[" },
-  { name = "define_semantic_token_types", brace = "[" },
   { name = "env", brace = "(" },
-  { name = "error", brace = "(" },
   { name = "expect", brace = "[" },
   { name = "format_args", brace = "(" },
   { name = "format_err", brace = "(" },
@@ -155,44 +141,21 @@ standard-macro-braces = [
   { name = "impl_from", brace = "(" },
   { name = "implement", brace = "(" },
   { name = "include", brace = "(" },
-  { name = "info_span", brace = "(" },
-  { name = "info", brace = "(" },
-  { name = "intern_id", brace = "(" },
-  { name = "match_ast", brace = "{" },
   { name = "matches", brace = "(" },
-  { name = "mod_items", brace = "{" },
   { name = "never", brace = "(" },
-  { name = "opt", brace = "(" },
   { name = "panic", brace = "(" },
   { name = "print", brace = "(" },
   { name = "println", brace = "(" },
-  { name = "prop_oneof", brace = "[" },
-  { name = "proptest", brace = "{" },
-  { name = "select", brace = "{" },
-  { name = "smallvec::smallvec", brace = "[" },
-  { name = "smallvec", brace = "[" },
   { name = "span", brace = "(" },
   { name = "stringify", brace = "(" },
-  { name = "T", brace = "[" },
   { name = "thread_local", brace = "{" },
   { name = "todo", brace = "(" },
-  { name = "trace", brace = "(" },
-  { name = "tracing::debug", brace = "(" },
-  { name = "tracing::enabled", brace = "(" },
-  { name = "tracing::error", brace = "(" },
-  { name = "tracing::info_span", brace = "(" },
-  { name = "tracing::info", brace = "(" },
-  { name = "tracing::trace", brace = "(" },
-  { name = "tracing::warn", brace = "(" },
   { name = "try_default", brace = "(" },
   { name = "unimplemented", brace = "(" },
   { name = "unreachable", brace = "(" },
   { name = "vec", brace = "[" },
-  { name = "warn", brace = "(" },
   { name = "write", brace = "(" },
   { name = "writeln", brace = "(" },
-  { name = "xflags::xflags", brace = "{" },
-  { name = "xflags", brace = "{" },
 ]
 struct-field-name-threshold = 0
 suppress-restriction-lint-in-const = false
