@@ -23,7 +23,7 @@ Rust version you are using: (`cargo --version`)
 
 ```
 
-wesl-rs version you are using: (`wesl --version`)
+`wesl-rs` version you are using: (`wesl --version`)
 
 ```text
 

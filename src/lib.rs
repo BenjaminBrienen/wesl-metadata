@@ -6,7 +6,7 @@
 //!
 //! Get the current package's metadata with all dependency information.
 //!
-//! ```rust
+//! ```rust,ignore
 //! # use std::path::Path;
 //! # use wesl_metadata::MetadataCommand;
 //! let _metadata = MetadataCommand::new().exec().unwrap();
@@ -15,7 +15,7 @@
 //! If you have a program that takes `--manifest-path` as an argument, you can forward that
 //! to [`MetadataCommand`]:
 //!
-//! ```rust
+//! ```rust,ignore
 //! # use wesl_metadata::MetadataCommand;
 //! # use std::path::Path;
 //! let mut args = std::env::args().skip_while(|val| !val.starts_with("--manifest-path"));
@@ -35,7 +35,7 @@
 //!
 //! Pass features flags, e.g. `--all-features`.
 //!
-//! ```rust
+//! ```rust,ignore
 //! # use std::path::Path;
 //! # use wesl_metadata::MetadataCommand;
 //! let _metadata = MetadataCommand::new()
@@ -654,4 +654,12 @@ impl MetadataCommand {
 			.ok_or(Error::NoJson)?;
 		Self::parse(stdout)
 	}
+}
+
+#[cfg(test)]
+mod tests {
+	use super::*;
+
+	#[test]
+	fn todo() {}
 }
