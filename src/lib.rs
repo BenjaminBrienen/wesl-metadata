@@ -83,7 +83,6 @@ pub struct PackageId {
 }
 
 impl fmt::Display for PackageId {
-	#[expect(clippy::renamed_function_params, reason = "trait impl")]
 	fn fmt(
 		&self,
 		formatter: &mut fmt::Formatter<'_>,
@@ -434,7 +433,7 @@ pub enum Edition {
 impl Edition {
 	/// Return the string representation of the edition
 	#[must_use]
-	pub const fn as_str(&self) -> &'static str {
+	pub const fn as_str(self) -> &'static str {
 		match self {
 			Self::E2024 => "2024",
 		}
@@ -442,7 +441,6 @@ impl Edition {
 }
 
 impl fmt::Display for Edition {
-	#[expect(clippy::renamed_function_params, reason = "trait impl")]
 	fn fmt(
 		&self,
 		formatter: &mut fmt::Formatter<'_>,
