@@ -2,7 +2,7 @@ name: Weekly beta CI test
 
 on:
   schedule:
-    - cron: '0 12 * * 1'
+    - cron: "0 12 * * 1"
   workflow_dispatch:
 
 permissions: {}
@@ -28,7 +28,7 @@ jobs:
         run: cargo test --workspace --lib --bins --tests --benches
         env:
           CARGO_INCREMENTAL: 0
-          RUSTFLAGS: '-C debuginfo=0 -D warnings'
+          RUSTFLAGS: "-C debuginfo=0 -D warnings"
 
   lint:
     runs-on: ubuntu-latest
@@ -101,7 +101,7 @@ jobs:
           RUSTFLAGS: -C debuginfo=0 -D warnings
 
       - name: Installs cargo-deadlinks
-        run: cargo install --force cargo-deadlinks
+        uses: taiki-e/install-action@cargo-deadlinks
 
       - name: Checks dead links
         run: cargo deadlinks --dir target/doc
