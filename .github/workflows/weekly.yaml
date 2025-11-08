@@ -2,7 +2,7 @@ name: Weekly beta CI test
 
 on:
   schedule:
-    - cron: '0 12 * * 1'
+    - cron: "0 12 * * 1"
   workflow_dispatch:
 
 permissions: {}
@@ -19,7 +19,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Rust beta toolchain
         uses: dtolnay/rust-toolchain@beta
@@ -28,14 +28,14 @@ jobs:
         run: cargo test --workspace --lib --bins --tests --benches
         env:
           CARGO_INCREMENTAL: 0
-          RUSTFLAGS: '-C debuginfo=0 -D warnings'
+          RUSTFLAGS: "-C debuginfo=0 -D warnings"
 
   lint:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install Rust beta toolchain
         uses: dtolnay/rust-toolchain@beta
@@ -54,7 +54,7 @@ jobs:
     needs: test
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Cache
         uses: actions/cache@v4
@@ -83,7 +83,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install beta Rust toolchain
         uses: dtolnay/rust-toolchain@beta
@@ -101,7 +101,7 @@ jobs:
           RUSTFLAGS: -C debuginfo=0 -D warnings
 
       - name: Installs cargo-deadlinks
-        run: cargo install --force cargo-deadlinks
+        uses: taiki-e/install-action@cargo-deadlinks
 
       - name: Checks dead links
         run: cargo deadlinks --dir target/doc
