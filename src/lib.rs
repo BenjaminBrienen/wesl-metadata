@@ -424,10 +424,15 @@ pub struct Target {
 /// As of writing this comment rust editions 2027 and 2030 are not actually a thing yet but are parsed nonetheless for future proofing.
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[non_exhaustive]
+#[derive(Default)]
 pub enum Edition {
-	/// Edition 2024
-	#[serde(rename = "2024")]
-	E2024,
+	/// WGSL
+	#[serde(rename = "WGSL")]
+	#[default]
+	Wgsl,
+	/// WESL
+	#[serde(rename = "WESL")]
+	WeslUnstable2025,
 }
 
 impl Edition {
@@ -435,7 +440,8 @@ impl Edition {
 	#[must_use]
 	pub const fn as_str(self) -> &'static str {
 		match self {
-			Self::E2024 => "2024",
+			Self::Wgsl => "WGSL",
+			Self::WeslUnstable2025 => "WESL",
 		}
 	}
 }
@@ -446,12 +452,6 @@ impl fmt::Display for Edition {
 		formatter: &mut fmt::Formatter<'_>,
 	) -> fmt::Result {
 		formatter.write_str(self.as_str())
-	}
-}
-
-impl Default for Edition {
-	fn default() -> Self {
-		Self::E2024
 	}
 }
 
