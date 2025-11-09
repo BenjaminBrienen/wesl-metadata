@@ -1,6 +1,6 @@
 [package]
 name = "wesl-metadata"
-version = "0.0.3"
+version = "0.0.4"
 authors = ["Benjamin Brienen <Benjamin.Brienen@outlook.com>"]
 repository = "https://github.com/wgsl-analyzer/wesl-metadata"
 description = "structured access to the output of `wesl metadata`"
