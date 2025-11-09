@@ -39,12 +39,12 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Install stable Rust toolchain
-        uses: dtolnay/rust-toolchain@1.89.0
+        uses: dtolnay/rust-toolchain@1.91.0
         with:
           components: clippy
 
@@ -69,10 +69,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install stable Rust toolchain
-        uses: dtolnay/rust-toolchain@1.89.0
+        uses: dtolnay/rust-toolchain@1.91.0
         with:
           components: rustfmt
 
@@ -84,7 +84,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install stable Rust toolchain
         uses: dtolnay/rust-toolchain@master
@@ -97,30 +97,25 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: markdownlint
         uses: DavidAnson/markdownlint-cli2-action@v20
         with:
           config: .markdownlint.jsonc
-          globs: '**/*.md'
+          globs: "**/*.md"
 
   toml:
+    name: Check TOML formatting
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Install stable Rust toolchain
-        uses: dtolnay/rust-toolchain@1.89.0
-
-      - name: Install taplo
-        run: cargo install taplo-cli --locked
-
-      - name: Run Taplo
-        id: taplo
-        run: taplo fmt --check --diff
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Check formatting with with Taplo
+        uses: docker://docker.io/tamasfe/taplo:latest
+        with:
+          args: fmt --check --diff
 
       - name: Taplo info
         if: failure()
@@ -136,7 +131,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Check for typos
         uses: crate-ci/typos@v1.35.3
@@ -155,7 +150,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
@@ -175,7 +170,7 @@ jobs:
           RUSTFLAGS: -C debuginfo=0 -D warnings
 
       - name: Installs cargo-deadlinks
-        run: cargo install --force cargo-deadlinks
+        uses: taiki-e/install-action@cargo-deadlinks
 
       - name: Checks dead links
         run: cargo deadlinks --dir target/doc
@@ -187,19 +182,19 @@ jobs:
     timeout-minutes: 30
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      # cargo-udeps requires this toolchain at runtime
       - name: Install nightly Rust toolchain
         uses: dtolnay/rust-toolchain@master
         with:
           toolchain: ${{ env.NIGHTLY_TOOLCHAIN }}
 
-      - name: Install udeps
-        run: cargo install --locked cargo-udeps
-
-      - name: Run udeps
+      - name: Install cargo-udeps
+        uses: taiki-e/install-action@cargo-udeps
+      - name: Run cargo-udeps
         run: cargo udeps
 
   conclusion:
