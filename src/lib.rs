@@ -246,6 +246,9 @@ pub struct Package {
 	/// An opaque identifier for a package
 	pub id: PackageId,
 
+	/// The source of the package, e.g. crates.io or `None` for local projects.
+	pub source: Option<Source>,
+
 	/// The [`description` field](https://github.com/wgsl-tooling-wg/wesl-spec/pull/136) as given in the `wesl.toml`
 	#[cfg_attr(feature = "builder", builder(default))]
 	pub description: Option<String>,
@@ -369,6 +372,40 @@ impl Package {
 				.unwrap_or(&self.manifest_path)
 				.join(file)
 		})
+	}
+}
+
+/// The source of a package such as crates.io or npmjs.com.
+///
+/// It is possible to inspect the `representation` field if the need arises, but its
+/// precise format is an implementation detail and is subject to change.
+#[derive(Clone, Serialize, Deserialize, Debug, PartialEq, Eq, Hash)]
+#[serde(transparent)]
+pub struct Source {
+	/// The underlying string representation of a source.
+	pub representation: String,
+}
+
+impl Source {
+	/// Returns true if the source is crates.io.
+	#[must_use]
+	pub fn is_crates_io(&self) -> bool {
+		self.representation == "registry+https://github.com/rust-lang/crates.io-index"
+	}
+
+	/// Returns true if the source is npmjs.org.
+	#[must_use]
+	pub fn is_npmjs_org(&self) -> bool {
+		self.representation == "registry+https://registry.npmjs.org/"
+	}
+}
+
+impl fmt::Display for Source {
+	fn fmt(
+		&self,
+		formatter: &mut fmt::Formatter<'_>,
+	) -> fmt::Result {
+		fmt::Display::fmt(&self.representation, formatter)
 	}
 }
 
